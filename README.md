@@ -161,25 +161,19 @@ First off let's log into the client-1's server. Although we haven't opened up th
 Go to virtual machines then click on client 1. Find the public IP address and copy it. 
 
 
+
 We will use to IP address to login to our virtual machine using either microsoft remote desktop on mac or remote desktop connection on windows. 
 
 
 
-Enter in your username and password that you made earlier when creating this virtual machine. I hope you haven't forgot it. Then login to the machine. 
-
-
-
-While client one is loading we can go to the domain controller virtual machine and find it's private IP address so that we can ping it. 
+Enter in your username and password that you made earlier when creating this virtual machine. I hope you haven't forgot it. Then login to the machine. While client one is loading we can go to the domain controller virtual machine and find it's private IP address so that we can ping it. 
 
 
 
 Scroll down a bit and you should be able to find it on the DC-1 virtual machine page. Remember this number.
 
 
-Go back to the client 1 virtual machine and click no for all of these annoying options. CLick accept to proceed. 
-
-
-Go to the start menu and search for command prompt. Once it's opened we can attempt to ping the domain controller by typing ping -t 10.0.0.4
+Go back to the client 1 virtual machine. Go to the start menu and search for command prompt. Once it's opened we can attempt to ping the domain controller by typing ping -t 10.0.0.4
 
 
 You'll see that the request keeps timing out. This is because the Domain controllers firewall is block ICMP traffic.
@@ -188,10 +182,7 @@ You'll see that the request keeps timing out. This is because the Domain control
 To fix this we need to go to DC-1 and copy the public IP Address. 
 
 
-Then we can enter in the username and password we made earlier when creating this virtual machine.
-
-
-Once logged in go to the start menu and type in 'wf.msc'
+Then we can enter in the username and password we made earlier when creating this virtual machine. Once logged in go to the start menu and type in 'wf.msc'
 
 
 
@@ -238,7 +229,7 @@ Click Next a few more times and you should come to a final install screen like t
 
 
 
-Once the installation is finished you'll be promoted to sign out. Sigh out the relog into the Domain controller using it's public IP address. Ensure that you look in with the conect of the domain. You can do this by entering the domain name \ user. 
+Once the installation is finished you'll be promoted to sign out. Sign out the relog into the Domain controller using it's public IP address. Ensure that you look in with the conect of the domain. You can do this by entering the domain name \ user. 
 
 
 STEP 7: Create Orginisational Units. 
@@ -264,7 +255,6 @@ STEP 8: Create another administrative account
 Click on the admins organisational unit. Then right click the open space. Find new then go to user.
 
 
-
 Give this admin a username. My will be jane_admin. 
 
 
@@ -280,6 +270,53 @@ Click add then type in domains. Click check names to find the appropiate group t
 
 
 Selcect domain admins then click ok. Finalise this update by clicking apply then ok. 
+
+
+
+
+STEP 9: Login as jane_admin 
+
+From this point on we are going to log in as our own unique user instead of a generic on. First off Log out of the domain controller. Go back to the Azure portal and get the public IP address. Paste that into Remote desktop and now we are going to login using the detials we created for jane_admin. 
+
+
+STEP 10: Join Client 1 to the domain
+
+
+This will enable us to login to client one as jane_admin or any other account we make that is on the server. To do this we are going to we are going to set client 1 dns settings to the domain controllers private IP address. 
+
+
+
+
+Go to DC-1 in the azure portal and find the private IP Address under NIC private IP. Remember this number. 
+
+
+Go back to client 1. 
+
+
+Go to networking and click change virtual NIC. 
+
+
+
+
+On the side tab click DNS Servers. Click custom then paste DC-1 private IP address into the DNS section. Press save to contine and wait for it to save. 
+
+
+Go to client-1 and click restart at the top. Be patient and wait for it to restart. 
+
+
+
+Once it has restarted copy Client-1's public IP address from the Azure portal then login. 
+
+
+Now we are ready to connect the 2 virtual machines. Right click the start menu and go to settings. 
+
+
+You should see a screen like this 
+
+
+
+
+
 
 
 
