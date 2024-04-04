@@ -210,7 +210,7 @@ Check back to client 1 and you see that the ping has started working.
 To stop this ping press control + c. 
 
 
-Step: Install Active dicertory domain services. 
+Step 5: Install Active dicertory domain services. 
 
 
 Go back to DC-1 and open the server manager. Then click add roles and services so that we can begin to install active directory on DC-1. 
@@ -223,6 +223,64 @@ One this drop down menu make sure to click active directory doman services.
 
 
 Then add feature > next>  next > install. Then wait for the install to finish. 
+
+
+
+Look at the for the flag at the top of the server manger and click on it. Find promote this servver into a domain controller and click on it. 
+
+
+You should see a window like this. We can now name the server. I will name the server mydomain.com and click next.
+
+On the next page create a simple password that you can remember then click next. 
+
+
+Click Next a few more times and you should come to a final install screen like this. 
+
+
+
+Once the installation is finished you'll be promoted to sign out. Sigh out the relog into the Domain controller using it's public IP address. Ensure that you look in with the conect of the domain. You can do this by entering the domain name \ user. 
+
+
+STEP 7: Create Orginisational Units. 
+
+Click start and search active directory. You'll see a screen like this. 
+
+
+
+
+
+We are going to create our first organisational unit. Just think of these organisational units like folders. Right click on mydomain.com on the sidebar. Find new then click on organisational unit.  
+
+
+
+
+We are going to make our first organisational unit called employees. Repeat this again and make one for admins. 
+
+
+
+STEP 8: Create another administrative account
+
+
+Click on the admins organisational unit. Then right click the open space. Find new then go to user.
+
+
+
+Give this admin a username. My will be jane_admin. 
+
+
+
+Then set the password and uncheck the box user must change the password at next login for the purposes of this tutorial. Then click next, then finsh to create the user.
+
+
+Although we have created a user account it's not a admin yet its just a user. We need to give it permisssions. We need to assign it to the domain admins group. To do this right click jane.doe and go to properties.
+
+
+Click add then type in domains. Click check names to find the appropiate group to put jane in. 
+
+
+
+Selcect domain admins then click ok. Finalise this update by clicking apply then ok. 
+
 
 
 
