@@ -179,7 +179,57 @@ Scroll down a bit and you should be able to find it on the DC-1 virtual machine 
 Go back to the client 1 virtual machine and click no for all of these annoying options. CLick accept to proceed. 
 
 
-Go to the start menu and search for command prompt. Once it's opened we can attempt to ping the domain controller by typing ping -t 
+Go to the start menu and search for command prompt. Once it's opened we can attempt to ping the domain controller by typing ping -t 10.0.0.4
+
+
+You'll see that the request keeps timing out. This is because the Domain controllers firewall is block ICMP traffic.
+
+
+To fix this we need to go to DC-1 and copy the public IP Address. 
+
+
+Then we can enter in the username and password we made earlier when creating this virtual machine.
+
+
+Once logged in go to the start menu and type in 'wf.msc'
+
+
+
+One the left side plane click inbound rules. Then sort this list by protocol. 
+
+
+
+Find the icmpv4 files and enable both of them by righ clicking and selecting enable rule. 
+
+
+
+Check back to client 1 and you see that the ping has started working. 
+
+
+
+To stop this ping press control + c. 
+
+
+Step: Install Active dicertory domain services. 
+
+
+Go back to DC-1 and open the server manager. Then click add roles and services so that we can begin to install active directory on DC-1. 
+
+
+You should see a text box like this. 
+Then click next> next> next. 
+
+One this drop down menu make sure to click active directory doman services. 
+
+
+Then add feature > next>  next > install. Then wait for the install to finish. 
+
+
+
+
+
+
+
 
 
 
